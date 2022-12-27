@@ -7,7 +7,10 @@ SOURCES += main.cpp \
     userinterface.cpp \
     apothecary.cpp \
     invoice.cpp \
-    salesinvoice.cpp
+    salesinvoice.cpp \
+    expense.cpp \
+    purchaseinvoice.cpp \
+    report.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -17,5 +20,8 @@ HEADERS += \
     apothecary.h \
     invoice.h \
     datetype.h \
-    salesinvoice.h
+    salesinvoice.h \
+    expense.h \
+    purchaseinvoice.h \
+    report.h
 
