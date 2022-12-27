@@ -4,11 +4,13 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    userinterface.cpp
+    userinterface.cpp \
+    apothecary.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    userinterface.h
+    userinterface.h \
+    apothecary.h
 
