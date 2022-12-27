@@ -4,10 +4,13 @@
 #include "cstdio"
 #include <apothecary.h>
 #include <salesinvoice.h>
+#include <expense.h>
+#include <purchaseinvoice.h>
+#include <report.h>
 
 #include <iostream>
 
-// טםעונפויס
+// Èםעונפויס
 class UserInterface
 {
 private:
@@ -19,6 +22,14 @@ private:
 
     SalesInvoiceRecord* ptrSalesInvoiceRecord;
     SalesInvoiceInputSceen* ptrSalesInputScreen;
+
+    PurchaseInvoiceRecord* ptrPurchaseInvoiceRecord;
+    PurchaseInvoiceInputSceen* ptrPurchaseInputScreen;
+
+    ExpenseRecord* ptrExpenseRecord;
+    ExpenseInputScreen* ptrExpenseInputScreen;
+
+    Report* ptrReport;
 
     char ch;
 

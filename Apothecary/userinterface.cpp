@@ -6,18 +6,26 @@ UserInterface::UserInterface()
 {
     ptrStok = new Stock;
     ptrSalesInvoiceRecord = new SalesInvoiceRecord;
+    ptrPurchaseInvoiceRecord = new PurchaseInvoiceRecord;
+    ptrExpenseRecord = new ExpenseRecord;
 }
 
 UserInterface::~UserInterface()
 {
     delete ptrStok;
     delete ptrSalesInvoiceRecord;
+    delete ptrPurchaseInvoiceRecord;
+    delete ptrExpenseRecord;
 }
 
 void UserInterface::interact()
 {
+
     while(true)
     {
+        cin.clear();
+        fflush(stdin);
+
         system("cls");
         cout << "Для ввода данных нажмите i\n"
              << "Для вывода отчетов нажмите d\n"
@@ -37,6 +45,7 @@ void UserInterface::interact()
             cin >> ch;
 
             switch (ch) {
+
             case 'm':
 
                 while (ch != 'n')
@@ -66,6 +75,7 @@ void UserInterface::interact()
                 fflush(stdin);
 
                 cout << "Переход в главное меню!\n";
+
                 system("pause");
                 break;
 
@@ -102,21 +112,86 @@ void UserInterface::interact()
                 break;
 
             case 'b':
-                cout << "Функция находится в разработке! \n";
+
+                while (ch != 'n')
+                {
+                   system("cls");
+
+                    ptrPurchaseInputScreen = new PurchaseInvoiceInputSceen(ptrPurchaseInvoiceRecord);
+                    ptrPurchaseInputScreen->setPurchaseInvoice();
+                    delete ptrPurchaseInputScreen;
+
+                    cin.clear();
+                    fflush(stdin);
+
+                    cout << "Ввести ещё одну приходную накладную? (y / n) \n";
+                    cout << "Вы ввели: ";
+                    cin >> ch;
+
+                    while (ch != 'y' && ch != 'n')
+                    {
+                        cout << "Введен недопустимый символ! Введите y или n ! \n";
+                        cout << "Вы ввели: ";
+                        cin >> ch;
+                    }
+
+                }
+
+                cin.clear();
+                fflush(stdin);
+
+                cout << "Переход в главное меню!\n";
+
                 system("pause");
                 break;
 
             case 'o':
-                cout << "Функция находится в разработке! \n";
+
+                while (ch != 'n')
+                {
+
+                    system("cls");
+
+                    ptrExpenseInputScreen = new ExpenseInputScreen(ptrExpenseRecord);
+                    ptrExpenseInputScreen->setExpense();
+                    delete ptrExpenseInputScreen;
+
+                    cin.clear();
+                    fflush(stdin);
+
+                    cout << "Ввести ещё одну оплату? (y / n) \n";
+                    cout << "Вы ввели: ";
+                    cin >> ch;
+
+                    while (ch != 'y' && ch != 'n')
+                    {
+                        cout << "Введен недопустимый символ! Введите y или n ! \n";
+                        cout << "Вы ввели: ";
+                        cin >> ch;
+                    }
+
+                }
+
+                cin.clear();
+                fflush(stdin);
+
+                cout << "Переход в главное меню!\n";
+
                 system("pause");
                 break;
 
             case 'q':
+
+                system("cls");
+
                 cout << "Вы возвращаетесь в главное меню \n";
                 system("pause");
                 break;
 
             default:
+
+                system("cls");
+
                 cout << "Неизвестная функция. Попробуйте ещё раз. \n";
                 system("pause");
                 break;
@@ -135,8 +210,8 @@ void UserInterface::interact()
 
             switch (ch) {
             case 'n':
-                
-		system("cls");
+
+                system("cls");
 
                 ptrStok->display();
 
@@ -144,8 +219,8 @@ void UserInterface::interact()
                 break;
 
             case 'd':
-               
-		system("cls");
+
+                system("cls");
 
                 ptrSalesInvoiceRecord->display();
 
@@ -153,21 +228,37 @@ void UserInterface::interact()
                 break;
 
             case 'r':
-                cout << "Функция находится в разработке! \n";
+
+                system("cls");
+
+                ptrPurchaseInvoiceRecord->display();
+
+                cout << "\n\n\n";
+
+                ptrExpenseRecord->display();
+
                 system("pause");
                 break;
 
             case 'o':
-                cout << "Функция находится в разработке! \n";
+
+                system("cls");
+
+                ptrReport = new Report(ptrExpenseRecord, ptrSalesInvoiceRecord, ptrPurchaseInvoiceRecord);
+                ptrReport->display();
+                delete ptrReport;
+
                 system("pause");
                 break;
 
             case 'q':
+
                 cout << "Вы возвращаетесь в главное меню \n";
                 system("pause");
                 break;
 
             default:
+
                 cout << "Неизвестная функция. Попробуйте ещё раз. \n";
                 system("pause");
                 break;
@@ -175,12 +266,17 @@ void UserInterface::interact()
         }
         else if (ch == 'q')
         {
+
+            system("cls");
             cout << "Всего доброго!\n";
+            system("pause");
+
             return;
         }
+
         else
         {
-
+            system("cls");
             cout << "Неизвестная функция. Попробуйте ещё раз. \n";
             system("pause");
         }
