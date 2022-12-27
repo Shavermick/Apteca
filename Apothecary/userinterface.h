@@ -18,7 +18,7 @@ private:
     StockInputScreen* ptrStokInputScreen;
 
     SalesInvoiceRecord* ptrSalesInvoiceRecord;
-    SalesInvoiceInputSceen* ptrSalesInputScreen;Ä‡‡
+    SalesInvoiceInputSceen* ptrSalesInputScreen;
 
     char ch;
 
