@@ -2,6 +2,18 @@
 
 using namespace std;
 
+UserInterface::UserInterface()
+{
+    ptrStok = new Stock;
+    ptrSalesInvoiceRecord = new SalesInvoiceRecord;
+}
+
+UserInterface::~UserInterface()
+{
+    delete ptrStok;
+    delete ptrSalesInvoiceRecord;
+}
+
 void UserInterface::interact()
 {
     while(true)
@@ -16,7 +28,7 @@ void UserInterface::interact()
         if (ch == 'i')
         {
             system("cls");
-            cout << "Для добавление нового лекарства на склад нажмите n\n"
+            cout << "Для добавление нового лекарства на склад нажмите m\n"
                  << "Для записи проданного лекарства нажмите s\n"
                  << "Для составление накладной на заказ лекарства нажмите b\n"
                  << "Для добавление записи об оплате услуг нажмите o\n"
@@ -25,13 +37,67 @@ void UserInterface::interact()
             cin >> ch;
 
             switch (ch) {
-            case 'n':
-                cout << "Функция находится в разработке! \n";
+            case 'm':
+
+                while (ch != 'n')
+                {
+                    system("cls");
+
+                    ptrStokInputScreen = new StockInputScreen(ptrStok);
+                    ptrStokInputScreen->setMedicine();
+                    delete ptrStokInputScreen;
+
+                    cin.clear();
+                    fflush(stdin);
+
+                    cout << "Ввести ещё одно лекарство? (y / n) \n";
+                    cout << "Вы ввели: ";
+                    cin >> ch;
+
+                    while (ch != 'y' && ch != 'n')
+                    {
+                        cout << "Введен недопустимый символ! Введите y или n ! \n";
+                        cout << "Вы ввели: ";
+                        cin >> ch;
+                    }
+                }
+
+                cin.clear();
+                fflush(stdin);
+
+                cout << "Переход в главное меню!\n";
                 system("pause");
                 break;
 
             case 's':
-                cout << "Функция находится в разработке! \n";
+
+                while (ch != 'n')
+                {
+                    system("cls");
+
+                    ptrSalesInputScreen = new SalesInvoiceInputSceen(ptrSalesInvoiceRecord, ptrStok);
+                    ptrSalesInputScreen->setSalesInvoice();
+                    delete ptrSalesInputScreen;
+
+                    cin.clear();
+                    fflush(stdin);
+
+                    cout << "Ввести ещё одну расходную накладную? (y / n) \n";
+                    cout << "Вы ввели: ";
+                    cin >> ch;
+
+                    while (ch != 'y' && ch != 'n')
+                    {
+                        cout << "Введен недопустимый символ! Введите y или n ! \n";
+                        cout << "Вы ввели: ";
+                        cin >> ch;
+                    }
+                }
+
+                cin.clear();
+                fflush(stdin);
+
+                cout << "Переход в главное меню!\n";
                 system("pause");
                 break;
 
@@ -60,21 +126,29 @@ void UserInterface::interact()
         {
             system("cls");
             cout << "Для формирования отчета лекарства на склад нажмите n\n"
-                 << "Для формирования недельного отчета по доходам нажмите d\n"
-                 << "Для формирования недельного отчета по расходам нажмите r\n"
-                 << "Для формирования недельного отчета по доходам и расходам нажмите o\n"
+                 << "Для формирования отчета по доходам нажмите d\n"
+                 << "Для формирования отчета по расходам нажмите r\n"
+                 << "Для формирования отчета по доходам и расходам нажмите o\n"
                  << "Для выхода в меню нажмите q \n"
                  << "Вы выбрали: ";
             cin >> ch;
 
             switch (ch) {
             case 'n':
-                cout << "Функция находится в разработке! \n";
+                
+		system("cls");
+
+                ptrStok->display();
+
                 system("pause");
                 break;
 
             case 'd':
-                cout << "Функция находится в разработке! \n";
+               
+		system("cls");
+
+                ptrSalesInvoiceRecord->display();
+
                 system("pause");
                 break;
 
